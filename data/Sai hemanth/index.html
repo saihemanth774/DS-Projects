@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DATA//LAB — Data Science Platform</title>
+<meta name="description" content="DATA//LAB: an interactive Data Science learning platform by M. Sai Hemanth, CSE (Data Science), Mohann Babu University.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080A0F'/%3E%3Cpath d='M6 22l6-8 5 5 9-12' stroke='%2322d3ee' stroke-width='2.5' fill='none'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="bg" aria-hidden="true"><canvas id="bgCanvas"></canvas><div class="bg-glow g1"></div><div class="bg-glow g2"></div></div>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand" aria-label="DATA//LAB home">
+      <span class="brand-name">DATA<i>//</i>LAB</span>
+      <span class="brand-sub">DATA SCIENCE PLATFORM</span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
+      <a href="#modules" data-tab="modules">Modules</a>
+      <a href="#experiments" data-tab="experiments">Experiments</a>
+      <a href="#tools" data-tab="tools">Tools</a>
+      <a href="#profile" data-tab="profile">Profile</a>
+      <span class="indicator" id="indicator"></span>
+    </nav>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><i data-lucide="menu"></i></button>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero wrap">
+    <div class="hero-copy reveal">
+      <p class="eyebrow"><span class="dot live"></span> SYSTEM ONLINE · v1.0</p>
+      <h1 class="display">DATA<br>SCIENCE<span class="accent">.</span></h1>
+      <p class="verbs"><span>Learn.</span> <span>Experiment.</span> <span>Build.</span></p>
+      <p class="lead">An interactive learning environment for mastering Data Science concepts, experiments, statistical thinking and machine learning.</p>
+      <div class="who">
+        <div><b>M. Sai Hemanth</b><span>CSE (Data Science)</span><span>Mohann Babu University</span></div>
+        <div><small>FACULTY</small><b>Mr. S. Bosubabu</b><small class="roll">ROLL NO · 24102102A030164</small></div>
+      </div>
+      <div class="cta">
+        <a class="btn solid" href="#modules" data-go="modules">EXPLORE MODULES <i data-lucide="arrow-right"></i></a>
+        <a class="btn ghost" href="#experiments" data-go="experiments">START EXPERIMENT <i data-lucide="play"></i></a>
+      </div>
+    </div>
+
+    <!-- DATA OVERVIEW -->
+    <aside class="overview glass reveal" aria-label="Dataset overview">
+      <div class="ov-head"><span class="mono">~/workspace/<b>churn_model.ipynb</b></span><span class="chip ok"><i class="dot live"></i> TRAINED</span></div>
+      <div class="stats">
+        <div class="stat"><small>DATASET</small><b><span data-count="42580">0</span></b><em>rows</em></div>
+        <div class="stat"><small>FEATURES</small><b><span data-count="18">0</span></b><em>columns</em></div>
+        <div class="stat"><small>MODEL ACCURACY</small><b class="cy"><span data-count="94.8" data-dec="1">0</span>%</b><em>test set</em></div>
+        <div class="stat"><small>DATA QUALITY</small><b class="gr"><span data-count="98.2" data-dec="1">0</span>%</b><em>non-null</em></div>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title"><small>MODEL PERFORMANCE · EPOCHS</small><span class="legend"><i class="l1"></i>accuracy <i class="l2"></i>loss</span></div>
+        <svg id="lineChart" viewBox="0 0 400 140" preserveAspectRatio="none" role="img" aria-label="Accuracy and loss over epochs">
+          <defs><linearGradient id="areaG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22d3ee" stop-opacity=".28"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/></linearGradient></defs>
+          <g class="gridl"><line x1="0" y1="35" x2="400" y2="35"/><line x1="0" y1="70" x2="400" y2="70"/><line x1="0" y1="105" x2="400" y2="105"/></g>
+          <path id="area" fill="url(#areaG)"/><path id="lossLine" class="ln loss"/><path id="accLine" class="ln acc"/>
+        </svg>
+      </div>
+      <div class="bars-row">
+        <div class="chart-title"><small>FEATURE IMPORTANCE</small></div>
+        <div class="bars" id="bars"></div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- MODULES -->
+  <section class="sec wrap" id="modules" data-section>
+    <header class="sec-head reveal"><span class="idx">01 / MODULES</span><h2>Build your Data Science foundation.</h2></header>
+    <div class="toolbar reveal">
+      <label class="search"><i data-lucide="search"></i><input id="modSearch" type="search" placeholder="Search modules…" aria-label="Search modules"></label>
+      <div class="seg" id="modFilter" role="group" aria-label="Filter modules">
+        <button class="on" data-f="all">ALL</button><button data-f="progress">IN PROGRESS</button><button data-f="new">NOT STARTED</button>
+      </div>
+    </div>
+    <div class="mod-list" id="modList"></div>
+    <p class="empty" id="modEmpty" hidden>No modules match your search.</p>
+  </section>
+
+  <!-- EXPERIMENTS -->
+  <section class="sec wrap" id="experiments" data-section>
+    <header class="sec-head reveal"><span class="idx">02 / EXPERIMENTS</span><h2>Turn concepts into working experiments.</h2></header>
+    <div class="toolbar reveal">
+      <label class="search"><i data-lucide="search"></i><input id="expSearch" type="search" placeholder="Search experiments…" aria-label="Search experiments"></label>
+      <div class="seg" id="expFilter" role="group" aria-label="Filter by difficulty">
+        <button class="on" data-f="all">ALL</button><button data-f="BEGINNER">BEGINNER</button><button data-f="INTERMEDIATE">INTERMEDIATE</button><button data-f="ADVANCED">ADVANCED</button>
+      </div>
+    </div>
+    <div class="exp-grid" id="expGrid"></div>
+    <p class="empty" id="expEmpty" hidden>No experiments match your filter.</p>
+  </section>
+
+  <!-- TOOLS -->
+  <section class="sec wrap" id="tools" data-section>
+    <header class="sec-head reveal"><span class="idx">03 / TOOLS</span><h2>Your Data Science toolkit.</h2></header>
+    <div class="toolbar reveal">
+      <label class="search"><i data-lucide="search"></i><input id="toolSearch" type="search" placeholder="Search tools…" aria-label="Search tools"></label>
+      <div class="seg" id="toolFilter" role="group" aria-label="Filter tools"></div>
+    </div>
+    <div class="tool-grid" id="toolGrid"></div>
+    <p class="empty" id="toolEmpty" hidden>No tools match your search.</p>
+  </section>
+
+  <!-- PROFILE -->
+  <section class="sec wrap" id="profile" data-section>
+    <header class="sec-head reveal"><span class="idx">04 / PROFILE</span><h2>Developer profile.</h2></header>
+    <div class="profile-grid">
+      <article class="glass prof reveal">
+        <div class="prof-top">
+          <div class="avatar" aria-hidden="true">MH</div>
+          <div>
+            <h3>M. Sai Hemanth</h3>
+            <p class="mono dim">CSE (Data Science)</p>
+            <span class="chip ok"><i class="dot live"></i> STATUS · ACTIVE STUDENT</span>
+          </div>
+        </div>
+        <dl class="kv">
+          <div><dt>UNIVERSITY</dt><dd>Mohann Babu University</dd></div>
+          <div><dt>DEPARTMENT</dt><dd>CSE (Data Science)</dd></div>
+          <div><dt>ROLL NUMBER</dt><dd class="mono">24102102A030164</dd></div>
+          <div><dt>FACULTY</dt><dd>Mr. S. Bosubabu</dd></div>
+        </dl>
+        <div class="gh">
+          <div><small>GITHUB</small><b class="mono">github.com/saihemanth774</b></div>
+          <a class="btn solid" href="https://github.com/saihemanth774" target="_blank" rel="noopener noreferrer">VIEW GITHUB <i data-lucide="arrow-up-right"></i></a>
+        </div>
+      </article>
+
+      <div class="pstats reveal">
+        <div class="pstat"><small>MODULES</small><b data-count="7" data-pad="2">00</b></div>
+        <div class="pstat"><small>EXPERIMENTS</small><b data-count="10" data-pad="2">00</b></div>
+        <div class="pstat"><small>TOOLS</small><b data-count="9" data-pad="2">00</b></div>
+        <div class="pstat hi"><small>PROGRESS</small><b><span data-count="68">0</span>%</b></div>
+      </div>
+
+      <article class="glass journey reveal" id="progress">
+        <div class="j-head"><small>DATA SCIENCE JOURNEY</small><b class="big"><span data-count="68">0</span>%</b></div>
+        <div class="pbar"><i data-w="68"></i></div>
+        <div class="j-rows">
+          <div><span class="mono">Foundation</span><div class="ascii" data-ascii="14/18"></div></div>
+          <div><span class="mono">Modules completed</span><b class="mono">12 / 18</b><div class="pbar sm"><i data-w="66.7"></i></div></div>
+          <div><span class="mono">Experiments completed</span><b class="mono">6 / 10</b><div class="pbar sm green"><i data-w="60"></i></div></div>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-in">
+    <div><b class="brand-name">DATA<i>//</i>LAB</b><p class="dim">Data Science Learning Platform</p></div>
+    <div><b>M. Sai Hemanth</b><p class="dim">CSE (Data Science)</p><p class="dim">Mohann Babu University</p></div>
+    <div><small>GITHUB</small><p><a class="mono" href="https://github.com/saihemanth774" target="_blank" rel="noopener noreferrer">github.com/saihemanth774</a></p></div>
+  </div>
+</footer>
+
+<!-- MODAL (module / experiment / tool) -->
+<div class="overlay" id="overlay" hidden>
+  <div class="modal glass" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <button class="x" id="mClose" aria-label="Close"><i data-lucide="x"></i></button>
+    <div id="mBody"></div>
+  </div>
+</div>
+
+<script src="lucide.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
